@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 
 public class WiseSayingService {
-    int id;
+    private int id;
 
     private final WiseSayingRepository wiseSayingRepository = new WiseSayingRepository();
 
@@ -13,12 +13,15 @@ public class WiseSayingService {
         this.id = wiseSayingRepository.getLastId();
     }
 
-    public int RegistWiseSaying(String wiseSaying, String writter) throws IOException {
-        wiseSayingRepository.saveWiseSaying(new WiseSaying(id, wiseSaying, writter));
+    public int RegistWiseSaying(String wiseSaying, String writter) {
+        try {
+            wiseSayingRepository.saveWiseSaying(new WiseSaying(id, wiseSaying, writter));
 
-        id++;
-        wiseSayingRepository.setLastId(id);
-
+            id++;
+            wiseSayingRepository.setLastId(id);
+        } catch(IOException e) {
+            System.out.println(" = " + e);
+        }
         return id - 1;
     }
 

@@ -7,9 +7,9 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        WiseSayingController wiseSayingController = new WiseSayingController();
+        App app = new App();
 
-        wiseSayingController.AtStartRun();
+        app.Run();
 
     }
 }

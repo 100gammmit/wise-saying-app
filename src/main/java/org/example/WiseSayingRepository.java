@@ -6,8 +6,15 @@ import java.util.HashMap;
 
 public class WiseSayingRepository {
     HashMap<Integer, WiseSaying> DB = new HashMap<>();
+    private String dbDir = ".\\src\\main\\db\\wiseSaying\\";
+
+    //테스트용 DB디렉토리 디렉션용
+    public void setDbDir(String dbDir) {
+        this.dbDir = dbDir;
+    }
+
     public void getAllDB() throws IOException {
-        File lIdFile = new File(".\\src\\main\\db\\wiseSaying\\lastId.txt");
+        File lIdFile = new File(dbDir + "lastId.txt");
         File wsFile = null;
 
         BufferedReader br = new BufferedReader(new FileReader(lIdFile));
@@ -15,7 +22,7 @@ public class WiseSayingRepository {
         String line = "", saying = "", writter = "";
 
         for(int i = lId; i > 0; i--) {
-            wsFile = new File (".\\src\\main\\db\\wiseSaying\\" + i + ".json");
+            wsFile = new File (dbDir + i + ".json");
             if(wsFile.exists()){
                 br = new BufferedReader(new FileReader(wsFile));
                 while ((line = br.readLine()) != null) {
@@ -33,7 +40,7 @@ public class WiseSayingRepository {
     }
 
     public void setLastId(int id) {
-        File lastId = new File(".\\src\\main\\db\\wiseSaying\\lastId.txt");
+        File lastId = new File(dbDir + "lastId.txt");
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(lastId));
             bw.write(String.valueOf(id));
@@ -46,7 +53,7 @@ public class WiseSayingRepository {
     }
 
     public int getLastId() throws IOException {
-        File lastId = new File(".\\src\\main\\db\\wiseSaying\\lastId.txt");
+        File lastId = new File(dbDir + "lastId.txt");
         int id = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(lastId));
@@ -59,11 +66,11 @@ public class WiseSayingRepository {
     }
 
     public void saveWiseSaying(WiseSaying wiseSaying) throws IOException {
-        File nsw = new File(".\\src\\main\\db\\wiseSaying\\" + wiseSaying.getId() + ".json");
+        File nsw = new File(dbDir + wiseSaying.getId() + ".json");
         nsw.createNewFile();
         BufferedWriter bw = new BufferedWriter(new FileWriter(nsw));
         try {
-            WriteWiseSayingFile(wiseSaying, bw);
+            WriteWiseSayingJSONFile(wiseSaying, bw);
 
             bw.flush();
             bw.close();
@@ -83,7 +90,7 @@ public class WiseSayingRepository {
     }
 
     public void removeById(int id) {
-        File rmsw = new File(".\\src\\main\\db\\wiseSaying\\" + id + ".json");
+        File rmsw = new File(dbDir + id + ".json");
         if (!rmsw.exists()) throw new RuntimeException();
 
         System.gc();
@@ -100,7 +107,7 @@ public class WiseSayingRepository {
     }
 
     public void BuildData() throws IOException {
-        File data = new File(".\\src\\main\\db\\wiseSaying\\data.json");
+        File data = new File(dbDir + "data.json");
         BufferedWriter bw = new BufferedWriter(new FileWriter(data));
         WiseSaying wiseSaying = null;
 
@@ -113,7 +120,7 @@ public class WiseSayingRepository {
         for(int i=0; i < allWS.size(); i++){
             wiseSaying = allWS.get(i);
             try {
-                WriteWiseSayingFile(wiseSaying, bw);
+                WriteWiseSayingJSONFile(wiseSaying, bw);
                 if(i != allWS.size()-1) {
                     bw.write(",");
                     bw.newLine();
@@ -132,15 +139,9 @@ public class WiseSayingRepository {
 
     // 명언 파일 작성 양식 매서드
     // 중복되는 코드이기에 매서드로 만듦
-    private void WriteWiseSayingFile(WiseSaying wiseSaying, BufferedWriter bw) throws IOException {
-        bw.write("{");
-        bw.newLine();
-        bw.write("\"id\": " + wiseSaying.getId() + ",");
-        bw.newLine();
-        bw.write("\"content\": \"" + wiseSaying.getSaying() + "\",");
-        bw.newLine();
-        bw.write("\"author\": \"" + wiseSaying.getWritter() + "\"");
-        bw.newLine();
-        bw.write("}");
+    private void WriteWiseSayingJSONFile(WiseSaying wiseSaying, BufferedWriter bw) throws IOException {
+        bw.write("{\n\t\"id\": " + wiseSaying.getId() + ",\n" +
+                "\t\"content\": \"" + wiseSaying.getSaying() + "\",\n" +
+                "\t\"author\": \"" + wiseSaying.getWritter() + "\"\n}");
     }
 }
