@@ -13,10 +13,12 @@ class WiseSayingRepositoryTest {
     private WiseSaying testWS2 = new WiseSaying(101, "테스트명언2", "테스트작가2");
     private File testFile = new File(dbDir + "100.json");
     private File testFile2 = new File(dbDir + "101.json");
+    private File lastID = new File(dbDir + "lastId.txt");
 
     @BeforeEach
     void BeforeEach() throws IOException {
         wiseSayingRepository.setDbDir(dbDir);
+        wiseSayingRepository.setLastId(102);
 
         wiseSayingRepository.saveWiseSaying(testWS1);
         wiseSayingRepository.saveWiseSaying(testWS2);
@@ -27,6 +29,7 @@ class WiseSayingRepositoryTest {
         System.gc();
         testFile.delete();
         testFile2.delete();
+        lastID.delete();
     }
 
     @Test

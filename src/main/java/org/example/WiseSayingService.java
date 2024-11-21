@@ -6,7 +6,14 @@ import java.util.HashMap;
 public class WiseSayingService {
     private int id;
 
-    private final WiseSayingRepository wiseSayingRepository = new WiseSayingRepository();
+    private WiseSayingRepository wiseSayingRepository = new WiseSayingRepository();
+
+    public WiseSayingService() {
+    }
+
+    public WiseSayingService(WiseSayingRepository wiseSayingRepository) {
+        this.wiseSayingRepository = wiseSayingRepository;
+    }
 
     public void AtStartRun() throws IOException {
         wiseSayingRepository.getAllDB();

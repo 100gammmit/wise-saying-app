@@ -6,11 +6,15 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 public class WiseSayingController {
-    private final WiseSayingService wiseSayingService = new WiseSayingService();
+    private WiseSayingService wiseSayingService = new WiseSayingService();
     private BufferedReader br;
 
     public WiseSayingController(BufferedReader br) {
         this.br = br;
+    }
+
+    public void setWiseSayingService(WiseSayingService wiseSayingService) {
+        this.wiseSayingService = wiseSayingService;
     }
 
     public void AtStartRun() throws IOException {
