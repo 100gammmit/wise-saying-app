@@ -52,4 +52,17 @@ public class WiseSayingService {
     public void BuildData() throws IOException {
         wiseSayingRepository.BuildData();
     }
+
+    public ArrayList<WiseSaying> SearchWiseSaying(String keyword, String type) throws IOException {
+        ArrayList<WiseSaying> result;
+        if(type.equals("content")) {
+            result = wiseSayingRepository.SerarchWiseSayingsBySaying(keyword);
+        }
+        else if(type.equals("author")) {
+            result = wiseSayingRepository.SerarchWiseSayingsByWritter(keyword);
+        }
+        else throw new IOException();
+
+        return result;
+    }
 }

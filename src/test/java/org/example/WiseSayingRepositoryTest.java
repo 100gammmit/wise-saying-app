@@ -34,8 +34,8 @@ class WiseSayingRepositoryTest {
 
     @Test
     void getAllDB() throws IOException {
-        wiseSayingRepository.getAllDB();
-        assertEquals(wiseSayingRepository.DB.size(), 2);
+        wiseSayingRepository.getAllDB();    // BeforeEach에서 2개 파일 저장된 상태에서 그 파일 2개 다시 DB에 저장됨
+        assertEquals(4, wiseSayingRepository.DB.size());
     }
 
     @Test
@@ -64,13 +64,25 @@ class WiseSayingRepositoryTest {
     void removeById() throws IOException {
         wiseSayingRepository.saveWiseSaying(new WiseSaying(200, "삭제", "제삭"));
         wiseSayingRepository.removeById(200);
-        assert !new File(dbDir + "200.json").exists();
+        assertFalse(new File(dbDir + "200.json").exists());
     }
 
     @Test
     void updateWiseSaying() throws IOException {
         wiseSayingRepository.UpdateWiseSaying(100, "수정명언", "수정작가");
         assertEquals(wiseSayingRepository.findById(100).getSaying(), "수정명언");
+    }
+
+    @Test
+    void searchWiseSayingsBySaying() {
+        WiseSaying result = wiseSayingRepository.SerarchWiseSayingsBySaying("언2").getFirst();
+        assertEquals("테스트명언2", result.getSaying());
+    }
+
+    @Test
+    void searchWiseSayingsByWritter() {
+        WiseSaying result = wiseSayingRepository.SerarchWiseSayingsByWritter("가2").getFirst();
+        assertEquals("테스트작가2", result.getWritter());
     }
 
 }

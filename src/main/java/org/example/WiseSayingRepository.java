@@ -96,9 +96,14 @@ public class WiseSayingRepository {
         File rmsw = new File(dbDir + id + ".json");
         if (!rmsw.exists()) throw new RuntimeException();
 
+        for (int i = 0; i < DB.size(); i++) {
+            if(DB.get(i).getId() == id) {
+                DB.remove(i);
+                break;
+            }
+        }
         System.gc();
         rmsw.delete();
-        DB.remove(id);
     }
 
     public void UpdateWiseSaying(int id, String wiseSaying, String writter) throws IOException {
@@ -139,9 +144,20 @@ public class WiseSayingRepository {
         bw.close();
     }
 
-    public ArrayList<WiseSaying> SerarchWiseSayings(String keyword, String type) {
-        System.out.println("만드는중");
-        return null;
+    public ArrayList<WiseSaying> SerarchWiseSayingsBySaying(String keyword) {
+        ArrayList<WiseSaying> result = new ArrayList<>();
+        for (WiseSaying ws : DB) {
+            if (ws.getSaying().contains(keyword)) result.add(ws);
+        }
+        return result;
+    }
+
+    public ArrayList<WiseSaying> SerarchWiseSayingsByWritter(String keyword) {
+        ArrayList<WiseSaying> result = new ArrayList<>();
+        for (WiseSaying ws : DB) {
+            if (ws.getWritter().contains(keyword)) result.add(ws);
+        }
+        return result;
     }
 
     // 명언 파일 작성 양식 매서드

@@ -22,25 +22,26 @@ public class App {
                 if (command.equals("종료")) {
                     break;
                 }
-                if (command.equals("등록")) {
+                else if (command.equals("등록")) {
                     wiseSayingController.Regist();
                 }
 
-                if (command.equals("목록")) {
-                    wiseSayingController.ViewAll();
+                else if (command.contains("목록")) {
+                    if (command.contains("?")) wiseSayingController.SearchResult(command);
+                    else wiseSayingController.ViewAll();
                 }
 
-                if (command.contains("삭제")) {
+                else if (command.contains("삭제")) {
                     // 파라미터로 String에서 int만 추출하며 파싱
                     wiseSayingController.Remove(Integer.parseInt(command.replaceAll("[^0-9]", "")));
                 }
 
-                if (command.contains("수정")) {
+                else if (command.contains("수정")) {
                     // 파라미터로 String에서 int만 추출하며 파싱
                     wiseSayingController.Update(Integer.parseInt(command.replaceAll("[^0-9]", "")));
                 }
 
-                if (command.contains("빌드")) {
+                else if (command.contains("빌드")) {
                     wiseSayingController.BuildData();
                 }
             }

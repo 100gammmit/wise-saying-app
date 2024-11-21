@@ -175,4 +175,34 @@ class IntegrationTest {
         System.out.println(out);
     }
 
+    @DisplayName("명언 검색 type = content")
+    @Test
+    void SearchWiseSayingBySaying() {
+        String cmd = registCmd + """
+                목록?type=content&keyword=테스트
+                """ + endCmd;
+        configAndRumApp(cmd);
+        String out = baos.toString();
+
+        assertTrue(out.contains("검색타입 : content") && out.contains("검색어 : 테스트") && out.contains("테스트작가"));
+        TestUtil.clearSetOutToByteArray(baos);
+
+        System.out.println(out);
+    }
+
+    @DisplayName("명언 검색 type = author")
+    @Test
+    void SearchWiseSayingByWritter() {
+        String cmd = registCmd + """
+                목록?type=author&keyword=테스트
+                """ + endCmd;
+        configAndRumApp(cmd);
+        String out = baos.toString();
+
+        assertTrue(out.contains("검색타입 : author") && out.contains("검색어 : 테스트") && out.contains("테스트명언"));
+        TestUtil.clearSetOutToByteArray(baos);
+
+        System.out.println(out);
+    }
+
 }

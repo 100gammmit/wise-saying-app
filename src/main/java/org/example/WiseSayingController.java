@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class WiseSayingController {
     private WiseSayingService wiseSayingService = new WiseSayingService();
@@ -33,14 +34,7 @@ public class WiseSayingController {
     }
 
     public void ViewAll() {
-        System.out.println("번호 / 작가 / 명언");
-        System.out.println("------------------------");
-
-        ArrayList<WiseSaying> allWiseSaying = wiseSayingService.ViewAllWiseSaying();
-
-        for(WiseSaying ws : allWiseSaying) {
-            System.out.println(ws.getId() + " / " + ws.getWritter() + " / " + ws.getSaying());
-        }
+        ViewWiseSayingList(wiseSayingService.ViewAllWiseSaying());
     }
 
     public void Remove(int removeId) {
@@ -71,4 +65,24 @@ public class WiseSayingController {
         System.out.println("data.json 파일의 내용이 갱신되었습니다.");
     }
 
+    public void SearchResult(String cmd) throws IOException {
+        String type = cmd.substring(cmd.indexOf("=")+1, cmd.indexOf("&"));
+        String keyword = cmd.substring(cmd.lastIndexOf("=")+1);
+
+        System.out.println("------------------------");
+        System.out.println("검색타입 : " + type);
+        System.out.println("검색어 : " + keyword);
+        System.out.println("------------------------");
+
+        ViewWiseSayingList(wiseSayingService.SearchWiseSaying(keyword, type));
+    }
+
+    private void ViewWiseSayingList(ArrayList<WiseSaying> wiseSayingArrayList) {
+        System.out.println("번호 / 작가 / 명언");
+        System.out.println("------------------------");
+
+        for(WiseSaying ws : wiseSayingArrayList) {
+            System.out.println(ws.getId() + " / " + ws.getWritter() + " / " + ws.getSaying());
+        }
+    }
 }
