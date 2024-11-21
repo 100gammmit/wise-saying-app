@@ -2,7 +2,6 @@ package org.example;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class WiseSayingRepository {
     ArrayList<WiseSaying> DB = new ArrayList<>();
@@ -69,7 +68,7 @@ public class WiseSayingRepository {
         File nsw = new File(dbDir + wiseSaying.getId() + ".json");
         nsw.createNewFile();
         BufferedWriter bw = new BufferedWriter(new FileWriter(nsw));
-        WriteWiseSayingJSONFile(wiseSaying, bw);
+        writeWiseSayingJSONFile(wiseSaying, bw);
 
         bw.flush();
         bw.close();
@@ -106,20 +105,20 @@ public class WiseSayingRepository {
         rmsw.delete();
     }
 
-    public void UpdateWiseSaying(int id, String wiseSaying, String writter) throws IOException {
+    public void updateWiseSaying(int id, String wiseSaying, String writter) throws IOException {
         WiseSaying updateWS = findById(id);
         updateWS.setSaying(wiseSaying);
         updateWS.setWritter(writter);
 
         File uSW = new File(dbDir + updateWS.getId() + ".json");
         BufferedWriter bw = new BufferedWriter(new FileWriter(uSW));
-        WriteWiseSayingJSONFile(updateWS, bw);
+        writeWiseSayingJSONFile(updateWS, bw);
 
         bw.flush();
         bw.close();
     }
 
-    public void BuildData() throws IOException {
+    public void buildData() throws IOException {
         File data = new File(dbDir + "data.json");
         BufferedWriter bw = new BufferedWriter(new FileWriter(data));
         WiseSaying wiseSaying = null;
@@ -129,7 +128,7 @@ public class WiseSayingRepository {
         for (int i = 0; i < DB.size(); i++) {
             wiseSaying = DB.get(i);
 
-            WriteWiseSayingJSONFile(wiseSaying, bw);
+            writeWiseSayingJSONFile(wiseSaying, bw);
             if (i != DB.size() - 1) {
                 bw.write(",");
                 bw.newLine();
@@ -144,7 +143,7 @@ public class WiseSayingRepository {
         bw.close();
     }
 
-    public ArrayList<WiseSaying> SerarchWiseSayingsBySaying(String keyword) {
+    public ArrayList<WiseSaying> serarchWiseSayingsBySaying(String keyword) {
         ArrayList<WiseSaying> result = new ArrayList<>();
         for (WiseSaying ws : DB) {
             if (ws.getSaying().contains(keyword)) result.add(ws);
@@ -152,7 +151,7 @@ public class WiseSayingRepository {
         return result;
     }
 
-    public ArrayList<WiseSaying> SerarchWiseSayingsByWritter(String keyword) {
+    public ArrayList<WiseSaying> serarchWiseSayingsByWritter(String keyword) {
         ArrayList<WiseSaying> result = new ArrayList<>();
         for (WiseSaying ws : DB) {
             if (ws.getWritter().contains(keyword)) result.add(ws);
@@ -162,7 +161,7 @@ public class WiseSayingRepository {
 
     // 명언 파일 작성 양식 매서드
     // 중복되는 코드이기에 매서드로 만듦
-    private void WriteWiseSayingJSONFile(WiseSaying wiseSaying, BufferedWriter bw) throws IOException {
+    private void writeWiseSayingJSONFile(WiseSaying wiseSaying, BufferedWriter bw) throws IOException {
         bw.write("{\n\t\"id\": " + wiseSaying.getId() + ",\n" +
                 "\t\"content\": \"" + wiseSaying.getSaying() + "\",\n" +
                 "\t\"author\": \"" + wiseSaying.getWritter() + "\"\n}");

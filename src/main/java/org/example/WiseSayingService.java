@@ -2,7 +2,6 @@ package org.example;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class WiseSayingService {
     private int id;
@@ -16,12 +15,12 @@ public class WiseSayingService {
         this.wiseSayingRepository = wiseSayingRepository;
     }
 
-    public void AtStartRun() throws IOException {
+    public void atStartRun() throws IOException {
         wiseSayingRepository.getAllDB();
         this.id = wiseSayingRepository.getLastId();
     }
 
-    public int RegistWiseSaying(String wiseSaying, String writter) {
+    public int registWiseSaying(String wiseSaying, String writter) {
         try {
             wiseSayingRepository.saveWiseSaying(new WiseSaying(id, wiseSaying, writter));
 
@@ -33,33 +32,33 @@ public class WiseSayingService {
         return id - 1;
     }
 
-    public ArrayList<WiseSaying> ViewAllWiseSaying() {
+    public ArrayList<WiseSaying> viewAllWiseSaying() {
         return wiseSayingRepository.findAll();
     }
 
-    public void RemoveWiseSaying(int id) {
+    public void removeWiseSaying(int id) {
         wiseSayingRepository.removeById(id);
     }
 
-    public void UpdateWiseSaying(int id, String updateSaying, String updateWritter) throws IOException {
-        wiseSayingRepository.UpdateWiseSaying(id, updateSaying, updateWritter);
+    public void updateWiseSaying(int id, String updateSaying, String updateWritter) throws IOException {
+        wiseSayingRepository.updateWiseSaying(id, updateSaying, updateWritter);
     }
 
-    public WiseSaying FindWiseSayingById(int id) {
+    public WiseSaying findWiseSayingById(int id) {
         return wiseSayingRepository.findById(id);
     }
 
-    public void BuildData() throws IOException {
-        wiseSayingRepository.BuildData();
+    public void buildData() throws IOException {
+        wiseSayingRepository.buildData();
     }
 
-    public ArrayList<WiseSaying> SearchWiseSaying(String keyword, String type) throws IOException {
+    public ArrayList<WiseSaying> searchWiseSaying(String keyword, String type) throws IOException {
         ArrayList<WiseSaying> result;
         if(type.equals("content")) {
-            result = wiseSayingRepository.SerarchWiseSayingsBySaying(keyword);
+            result = wiseSayingRepository.serarchWiseSayingsBySaying(keyword);
         }
         else if(type.equals("author")) {
-            result = wiseSayingRepository.SerarchWiseSayingsByWritter(keyword);
+            result = wiseSayingRepository.serarchWiseSayingsByWritter(keyword);
         }
         else throw new IOException();
 

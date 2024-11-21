@@ -62,7 +62,7 @@ class IntegrationTest {
         wiseSayingController = new WiseSayingController(tbr);
         wiseSayingController.setWiseSayingService(wiseSayingService);
         app = new App(tbr, wiseSayingController);
-        app.Run();
+        app.run();
     }
 
     @BeforeEach

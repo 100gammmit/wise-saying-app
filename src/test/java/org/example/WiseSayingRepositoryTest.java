@@ -69,19 +69,19 @@ class WiseSayingRepositoryTest {
 
     @Test
     void updateWiseSaying() throws IOException {
-        wiseSayingRepository.UpdateWiseSaying(100, "수정명언", "수정작가");
+        wiseSayingRepository.updateWiseSaying(100, "수정명언", "수정작가");
         assertEquals(wiseSayingRepository.findById(100).getSaying(), "수정명언");
     }
 
     @Test
     void searchWiseSayingsBySaying() {
-        WiseSaying result = wiseSayingRepository.SerarchWiseSayingsBySaying("언2").getFirst();
+        WiseSaying result = wiseSayingRepository.serarchWiseSayingsBySaying("언2").getFirst();
         assertEquals("테스트명언2", result.getSaying());
     }
 
     @Test
     void searchWiseSayingsByWritter() {
-        WiseSaying result = wiseSayingRepository.SerarchWiseSayingsByWritter("가2").getFirst();
+        WiseSaying result = wiseSayingRepository.serarchWiseSayingsByWritter("가2").getFirst();
         assertEquals("테스트작가2", result.getWritter());
     }
 

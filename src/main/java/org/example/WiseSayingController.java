@@ -2,10 +2,7 @@ package org.example;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.regex.Pattern;
 
 public class WiseSayingController {
     private WiseSayingService wiseSayingService = new WiseSayingService();
@@ -19,35 +16,35 @@ public class WiseSayingController {
         this.wiseSayingService = wiseSayingService;
     }
 
-    public void AtStartRun() throws IOException {
-        wiseSayingService.AtStartRun();
+    public void atStartRun() throws IOException {
+        wiseSayingService.atStartRun();
     }
 
-    public void Regist() throws IOException {
+    public void regist() throws IOException {
         System.out.print("명언 : ");
         String wiseSaying = br.readLine();
         System.out.print("작가 : ");
         String writter = br.readLine();
 
-        int id = wiseSayingService.RegistWiseSaying(wiseSaying, writter);
+        int id = wiseSayingService.registWiseSaying(wiseSaying, writter);
         System.out.println(id + "번 명언이 등록되었습니다.");
     }
 
-    public void ViewAll() {
-        ViewWiseSayingList(wiseSayingService.ViewAllWiseSaying());
+    public void viewAll() {
+        viewWiseSayingList(wiseSayingService.viewAllWiseSaying());
     }
 
-    public void Remove(int removeId) {
+    public void remove(int removeId) {
         try {
-            wiseSayingService.RemoveWiseSaying(removeId);
+            wiseSayingService.removeWiseSaying(removeId);
             System.out.println(removeId + "번 명언이 삭제되었습니다.");
         } catch (Exception e) {
             System.out.println(removeId + "번 명언은 존재하지 않습니다.");
         }
     }
 
-    public void Update(int updateId) throws IOException {
-        WiseSaying ws = wiseSayingService.FindWiseSayingById(updateId);
+    public void update(int updateId) throws IOException {
+        WiseSaying ws = wiseSayingService.findWiseSayingById(updateId);
 
         System.out.println("명언(기존) : " + ws.getSaying());
         System.out.print("명언 : ");
@@ -57,15 +54,15 @@ public class WiseSayingController {
         System.out.print("작가 : ");
         String updateWritter = br.readLine();
 
-        wiseSayingService.UpdateWiseSaying(updateId, updateSaying, updateWritter);
+        wiseSayingService.updateWiseSaying(updateId, updateSaying, updateWritter);
     }
 
-    public void BuildData() throws IOException {
-        wiseSayingService.BuildData();
+    public void buildData() throws IOException {
+        wiseSayingService.buildData();
         System.out.println("data.json 파일의 내용이 갱신되었습니다.");
     }
 
-    public void SearchResult(String cmd) throws IOException {
+    public void searchResult(String cmd) throws IOException {
         String type = cmd.substring(cmd.indexOf("=")+1, cmd.indexOf("&"));
         String keyword = cmd.substring(cmd.lastIndexOf("=")+1);
 
@@ -74,10 +71,10 @@ public class WiseSayingController {
         System.out.println("검색어 : " + keyword);
         System.out.println("------------------------");
 
-        ViewWiseSayingList(wiseSayingService.SearchWiseSaying(keyword, type));
+        viewWiseSayingList(wiseSayingService.searchWiseSaying(keyword, type));
     }
 
-    private void ViewWiseSayingList(ArrayList<WiseSaying> wiseSayingArrayList) {
+    private void viewWiseSayingList(ArrayList<WiseSaying> wiseSayingArrayList) {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("------------------------");
 
