@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="772a3880-d98f-42ff-baac-7f393a49a6d3" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/db/wiseSaying/9.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/db/wiseSaying/lastId.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/db/wiseSaying/lastId.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/db/wiseSaying/lastId.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/WiseSayingControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/IntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/WiseSayingRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/WiseSayingRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/IntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "JUnit.IntegrationTest.Build.executor": "Run",
     "JUnit.IntegrationTest.Regist.executor": "Run",
+    "JUnit.IntegrationTest.Update.executor": "Run",
     "JUnit.IntegrationTest.ViewAll.executor": "Run",
     "JUnit.IntegrationTest.delete.executor": "Run",
     "JUnit.IntegrationTest.deleteFailed.executor": "Run",
@@ -87,6 +88,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "애플리케이션.Main.executor": "Run",
     "애플리케이션.TEst.executor": "Run"
   }
 }]]></component>
@@ -98,7 +100,20 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IntegrationTest">
+  <component name="RunManager" selected="애플리케이션.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="wise-saying-app.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="IntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="wise-saying-app.test" />
       <extension name="coverage">
@@ -114,7 +129,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IntegrationTest.Regist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntegrationTest.Build" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="wise-saying-app.test" />
       <extension name="coverage">
         <pattern>
@@ -124,13 +139,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="org.example.IntegrationTest" />
-      <option name="METHOD_NAME" value="Regist" />
+      <option name="METHOD_NAME" value="Build" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IntegrationTest.ViewAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntegrationTest.Update" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="wise-saying-app.test" />
       <extension name="coverage">
         <pattern>
@@ -140,13 +155,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="org.example.IntegrationTest" />
-      <option name="METHOD_NAME" value="ViewAll" />
+      <option name="METHOD_NAME" value="Update" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IntegrationTest.delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="WiseSayingRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="wise-saying-app.test" />
       <extension name="coverage">
         <pattern>
@@ -155,36 +170,19 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.IntegrationTest" />
-      <option name="METHOD_NAME" value="delete" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="IntegrationTest.deleteFailed" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="wise-saying-app.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.IntegrationTest" />
-      <option name="METHOD_NAME" value="deleteFailed" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="org.example.WiseSayingRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="애플리케이션.Main" />
+        <item itemvalue="JUnit.WiseSayingRepositoryTest" />
         <item itemvalue="JUnit.IntegrationTest" />
-        <item itemvalue="JUnit.IntegrationTest.deleteFailed" />
-        <item itemvalue="JUnit.IntegrationTest.delete" />
-        <item itemvalue="JUnit.IntegrationTest.ViewAll" />
-        <item itemvalue="JUnit.IntegrationTest.Regist" />
+        <item itemvalue="JUnit.IntegrationTest.Build" />
+        <item itemvalue="JUnit.IntegrationTest.Update" />
       </list>
     </recent_temporary>
   </component>

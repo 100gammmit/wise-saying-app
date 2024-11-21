@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WiseSayingRepository {
-    HashMap<Integer, WiseSaying> DB = new HashMap<>();
+    ArrayList<WiseSaying> DB = new ArrayList<>();
     private String dbDir = ".\\src\\main\\db\\wiseSaying\\";
 
-    //테스트용 DB디렉토리 디렉션용
+    //테스트용 DB디렉토리 대체용
     public void setDbDir(String dbDir) {
         this.dbDir = dbDir;
     }
@@ -21,9 +21,9 @@ public class WiseSayingRepository {
         int lId = Integer.parseInt(br.readLine());
         String line = "", saying = "", writter = "";
 
-        for(int i = lId; i > 0; i--) {
-            wsFile = new File (dbDir + i + ".json");
-            if(wsFile.exists()){
+        for (int i = lId; i > 0; i--) {
+            wsFile = new File(dbDir + i + ".json");
+            if (wsFile.exists()) {
                 br = new BufferedReader(new FileReader(wsFile));
                 while ((line = br.readLine()) != null) {
                     if (line.contains("\"content\": ")) {
@@ -33,7 +33,7 @@ public class WiseSayingRepository {
                         writter = line.split("\"")[3];
                     }
                 }
-                DB.put(i, new WiseSaying(i, saying, writter));
+                DB.add(new WiseSaying(i, saying, writter));
             }
         }
         br.close();
@@ -69,24 +69,27 @@ public class WiseSayingRepository {
         File nsw = new File(dbDir + wiseSaying.getId() + ".json");
         nsw.createNewFile();
         BufferedWriter bw = new BufferedWriter(new FileWriter(nsw));
-        try {
-            WriteWiseSayingJSONFile(wiseSaying, bw);
+        WriteWiseSayingJSONFile(wiseSaying, bw);
 
-            bw.flush();
-            bw.close();
+        bw.flush();
+        bw.close();
 
-            DB.put(wiseSaying.getId(), wiseSaying);
-        } catch (Exception e) {
-            System.out.println("e = " + e);
-        }
+        DB.addFirst(wiseSaying);
     }
 
-    public HashMap<Integer, WiseSaying> findAll() {
+    public ArrayList<WiseSaying> findAll() {
         return DB;
     }
 
     public WiseSaying findById(int id) {
-        return DB.get(id);
+        WiseSaying result = null;
+        for (WiseSaying ws : DB) {
+            if (ws.getId() == id) {
+                result = ws;
+                break;
+            }
+        }
+        return result;
     }
 
     public void removeById(int id) {
@@ -103,7 +106,12 @@ public class WiseSayingRepository {
         updateWS.setSaying(wiseSaying);
         updateWS.setWritter(writter);
 
-        saveWiseSaying(updateWS);
+        File uSW = new File(dbDir + updateWS.getId() + ".json");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(uSW));
+        WriteWiseSayingJSONFile(updateWS, bw);
+
+        bw.flush();
+        bw.close();
     }
 
     public void BuildData() throws IOException {
@@ -111,30 +119,29 @@ public class WiseSayingRepository {
         BufferedWriter bw = new BufferedWriter(new FileWriter(data));
         WiseSaying wiseSaying = null;
 
-        // 마지막 명언에 콤마','가 안들어가게 하기 위해서 ArrayList로 따로 정리하여 마지막 index 추출
-        ArrayList<WiseSaying> allWS = new ArrayList<>();
-        for(int k : DB.keySet()) allWS.add(DB.get(k));
-
         bw.write("[");
         bw.newLine();
-        for(int i=0; i < allWS.size(); i++){
-            wiseSaying = allWS.get(i);
-            try {
-                WriteWiseSayingJSONFile(wiseSaying, bw);
-                if(i != allWS.size()-1) {
-                    bw.write(",");
-                    bw.newLine();
-                }
+        for (int i = 0; i < DB.size(); i++) {
+            wiseSaying = DB.get(i);
 
-            } catch (Exception e) {
-                System.out.println("e = " + e);
+            WriteWiseSayingJSONFile(wiseSaying, bw);
+            if (i != DB.size() - 1) {
+                bw.write(",");
+                bw.newLine();
             }
+
+
         }
         bw.newLine();
         bw.write("]");
 
         bw.flush();
         bw.close();
+    }
+
+    public ArrayList<WiseSaying> SerarchWiseSayings(String keyword, String type) {
+        System.out.println("만드는중");
+        return null;
     }
 
     // 명언 파일 작성 양식 매서드

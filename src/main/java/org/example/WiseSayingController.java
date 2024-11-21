@@ -3,6 +3,7 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WiseSayingController {
@@ -35,12 +36,10 @@ public class WiseSayingController {
         System.out.println("번호 / 작가 / 명언");
         System.out.println("------------------------");
 
-        HashMap<Integer, WiseSaying> allWiseSaying = wiseSayingService.ViewAllWiseSaying();
-        WiseSaying nowWS = null;
+        ArrayList<WiseSaying> allWiseSaying = wiseSayingService.ViewAllWiseSaying();
 
-        for(int i : allWiseSaying.keySet()) {
-            nowWS = allWiseSaying.get(i);
-            System.out.println(nowWS.getId() + " / " + nowWS.getWritter() + " / " + nowWS.getSaying());
+        for(WiseSaying ws : allWiseSaying) {
+            System.out.println(ws.getId() + " / " + ws.getWritter() + " / " + ws.getSaying());
         }
     }
 

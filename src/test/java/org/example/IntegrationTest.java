@@ -140,6 +140,25 @@ class IntegrationTest {
         System.out.println(out);
     }
 
+    @DisplayName("명언 수정")
+    @Test
+    void Update() {
+        String cmd = registCmd + """
+                수정?id=1
+                수정명언
+                수정작가
+                """ + endCmd;
+        configAndRumApp(cmd);
+        String out = baos.toString();
+
+        WiseSaying updatedWS = wiseSayingRepository.findById(1);
+        assertEquals(updatedWS.getSaying(), "수정명언");
+        assertEquals(updatedWS.getWritter(), "수정작가");
+        TestUtil.clearSetOutToByteArray(baos);
+
+        System.out.println(out);
+    }
+
     @DisplayName("data.json 빌드")
     @Test
     void Build() {
@@ -150,6 +169,7 @@ class IntegrationTest {
         String out = baos.toString();
 
         assertTrue(out.contains("data.json 파일의 내용이 갱신되었습니다."));
+        assertTrue(new File(dbDir + "data.json").exists());
         TestUtil.clearSetOutToByteArray(baos);
 
         System.out.println(out);

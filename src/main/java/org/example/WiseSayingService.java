@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WiseSayingService {
@@ -32,7 +33,7 @@ public class WiseSayingService {
         return id - 1;
     }
 
-    public HashMap<Integer, WiseSaying> ViewAllWiseSaying() {
+    public ArrayList<WiseSaying> ViewAllWiseSaying() {
         return wiseSayingRepository.findAll();
     }
 
