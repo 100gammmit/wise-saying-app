@@ -19,31 +19,24 @@ public class App {
                 System.out.print("명령) ");
                 command = br.readLine();
 
-                if (command.equals("종료")) {
-                    break;
-                }
-                else if (command.equals("등록")) {
-                    wiseSayingController.Regist();
-                }
+                if (command.equals("종료")) break;
+
+                else if (command.equals("등록")) wiseSayingController.Regist();
 
                 else if (command.contains("목록")) {
                     if (command.contains("?")) wiseSayingController.SearchResult(command);
                     else wiseSayingController.ViewAll();
                 }
 
-                else if (command.contains("삭제")) {
-                    // 파라미터로 String에서 int만 추출하며 파싱
+                // 파라미터로 String에서 int만 추출하며 파싱
+                else if (command.contains("삭제"))
                     wiseSayingController.Remove(Integer.parseInt(command.replaceAll("[^0-9]", "")));
-                }
 
-                else if (command.contains("수정")) {
-                    // 파라미터로 String에서 int만 추출하며 파싱
+                else if (command.contains("수정"))
                     wiseSayingController.Update(Integer.parseInt(command.replaceAll("[^0-9]", "")));
-                }
 
-                else if (command.contains("빌드")) {
-                    wiseSayingController.BuildData();
-                }
+                else if (command.contains("빌드")) wiseSayingController.BuildData();
+
             }
         } catch (Exception e) {
             System.out.println("오류 발생 : \n" + e);
