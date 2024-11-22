@@ -23,16 +23,16 @@ public class App {
                 else if (command.equals("등록")) wiseSayingController.regist();
 
                 else if (command.contains("목록")) {
-                    if (command.contains("?")) wiseSayingController.searchResult(command);
-                    else wiseSayingController.viewAll();
+                    if (command.contains("type")) wiseSayingController.searchResult(getParam(command));
+                    else wiseSayingController.viewAll(getParam(command));
                 }
 
                 // 파라미터로 String에서 int만 추출하며 파싱
                 else if (command.contains("삭제"))
-                    wiseSayingController.remove(Integer.parseInt(command.replaceAll("[^0-9]", "")));
+                    wiseSayingController.remove(getParam(command));
 
                 else if (command.contains("수정"))
-                    wiseSayingController.update(Integer.parseInt(command.replaceAll("[^0-9]", "")));
+                    wiseSayingController.update(getParam(command));
 
                 else if (command.contains("빌드")) wiseSayingController.buildData();
 
@@ -40,6 +40,10 @@ public class App {
         } catch (Exception e) {
             System.out.println("오류 발생 : \n" + e);
         }
+    }
+
+    private String getParam(String command) {
+        return command.substring(command.indexOf("?")+1);
     }
 
 

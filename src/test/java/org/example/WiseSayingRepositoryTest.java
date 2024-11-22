@@ -11,6 +11,7 @@ class WiseSayingRepositoryTest {
 
     private WiseSaying testWS1 = new WiseSaying(100, "테스트명언", "테스트작가");
     private WiseSaying testWS2 = new WiseSaying(101, "테스트명언2", "테스트작가2");
+    private Pageable pageable = new Pageable(1);
     private File testFile = new File(dbDir + "100.json");
     private File testFile2 = new File(dbDir + "101.json");
     private File lastID = new File(dbDir + "lastId.txt");
@@ -27,9 +28,10 @@ class WiseSayingRepositoryTest {
     @AfterEach
     void AfterEach() {
         System.gc();
-        testFile.delete();
-        testFile2.delete();
-        lastID.delete();
+        File[] testFiles = new File(dbDir).listFiles();
+        for (File tFs : testFiles) {
+            tFs.delete();
+        }
     }
 
     @Test
@@ -50,8 +52,9 @@ class WiseSayingRepositoryTest {
     }
 
     @Test
-    void findAll() {
-        assertEquals(wiseSayingRepository.findAll().size(), 2);
+    void findPagedWiseSayings() {
+        Pageable pageable = new Pageable(1);
+        assertEquals(wiseSayingRepository.findPagedWiseSayings(pageable).size(), 2);
     }
 
     @Test
@@ -75,14 +78,31 @@ class WiseSayingRepositoryTest {
 
     @Test
     void searchWiseSayingsBySaying() {
-        WiseSaying result = wiseSayingRepository.serarchWiseSayingsBySaying("언2").getFirst();
+        WiseSaying result = wiseSayingRepository.serarchWiseSayingsBySaying("언2", pageable).getFirst();
         assertEquals("테스트명언2", result.getSaying());
     }
 
     @Test
     void searchWiseSayingsByWritter() {
-        WiseSaying result = wiseSayingRepository.serarchWiseSayingsByWritter("가2").getFirst();
+        WiseSaying result = wiseSayingRepository.serarchWiseSayingsByWritter("가2", pageable).getFirst();
         assertEquals("테스트작가2", result.getWritter());
+    }
+
+    @Test
+    void pageNation() throws IOException {
+        for(int i = 0; i < 20; i++) {
+            wiseSayingRepository.saveWiseSaying(new WiseSaying(i, i+"", i+""));
+        }
+        /*
+        19  14  9   4   101
+        18  13  8   3   100
+        17  12  7   2
+        16  11  6   1
+        15  10  5   0
+         */
+
+        assertEquals(wiseSayingRepository.findPagedWiseSayings(new Pageable(3)).get(2).getId(), 7);
+        assertEquals(wiseSayingRepository.findPagedWiseSayings(new Pageable(5)).size(), 2);
     }
 
 }

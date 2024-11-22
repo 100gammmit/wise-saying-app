@@ -32,8 +32,8 @@ public class WiseSayingService {
         return id - 1;
     }
 
-    public ArrayList<WiseSaying> viewAllWiseSaying() {
-        return wiseSayingRepository.findAll();
+    public ArrayList<WiseSaying> viewAllWiseSaying(Pageable pageable) {
+        return wiseSayingRepository.findPagedWiseSayings(pageable);
     }
 
     public void removeWiseSaying(int id) {
@@ -52,13 +52,13 @@ public class WiseSayingService {
         wiseSayingRepository.buildData();
     }
 
-    public ArrayList<WiseSaying> searchWiseSaying(String keyword, String type) throws IOException {
+    public ArrayList<WiseSaying> searchWiseSaying(String keyword, String type, Pageable pageable) throws IOException {
         ArrayList<WiseSaying> result;
         if(type.equals("content")) {
-            result = wiseSayingRepository.serarchWiseSayingsBySaying(keyword);
+            result = wiseSayingRepository.serarchWiseSayingsBySaying(keyword, pageable);
         }
         else if(type.equals("author")) {
-            result = wiseSayingRepository.serarchWiseSayingsByWritter(keyword);
+            result = wiseSayingRepository.serarchWiseSayingsByWritter(keyword, pageable);
         }
         else throw new IOException();
 

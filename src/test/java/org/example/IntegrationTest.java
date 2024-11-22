@@ -103,7 +103,7 @@ class IntegrationTest {
         configAndRumApp(cmd);
         String out = baos.toString();
 
-        assertTrue(out.contains("테스트명언") && out.contains("테스트작가"));
+        assertTrue(out.contains("테스트명언") && out.contains("테스트작가") && out.contains("페이지 : [1]"));
         TestUtil.clearSetOutToByteArray(baos);
 
         System.out.println(out);
@@ -184,7 +184,7 @@ class IntegrationTest {
         configAndRumApp(cmd);
         String out = baos.toString();
 
-        assertTrue(out.contains("검색타입 : content") && out.contains("검색어 : 테스트") && out.contains("테스트작가"));
+        assertTrue(out.contains("검색타입 : content") && out.contains("검색어 : 테스트") && out.contains("테스트작가") && out.contains("페이지 : [1]"));
         TestUtil.clearSetOutToByteArray(baos);
 
         System.out.println(out);
@@ -203,6 +203,15 @@ class IntegrationTest {
         TestUtil.clearSetOutToByteArray(baos);
 
         System.out.println(out);
+    }
+
+    @Test
+    void test() throws IOException {
+        String command = "page=2&type=author&keyword=작가";
+        configAndRumApp(command);
+        TestUtil.clearSetOutToByteArray(baos);
+        System.out.println(wiseSayingController.extractParam(command));
+
     }
 
 }

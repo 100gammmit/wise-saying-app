@@ -76,8 +76,8 @@ public class WiseSayingRepository {
         DB.addFirst(wiseSaying);
     }
 
-    public ArrayList<WiseSaying> findAll() {
-        return DB;
+    public ArrayList<WiseSaying> findPagedWiseSayings(Pageable pageable) {
+        return getPagedWiseSayings(DB, pageable);
     }
 
     public WiseSaying findById(int id) {
@@ -143,20 +143,20 @@ public class WiseSayingRepository {
         bw.close();
     }
 
-    public ArrayList<WiseSaying> serarchWiseSayingsBySaying(String keyword) {
+    public ArrayList<WiseSaying> serarchWiseSayingsBySaying(String keyword, Pageable pageable) {
         ArrayList<WiseSaying> result = new ArrayList<>();
         for (WiseSaying ws : DB) {
             if (ws.getSaying().contains(keyword)) result.add(ws);
         }
-        return result;
+        return getPagedWiseSayings(result, pageable);
     }
 
-    public ArrayList<WiseSaying> serarchWiseSayingsByWritter(String keyword) {
+    public ArrayList<WiseSaying> serarchWiseSayingsByWritter(String keyword, Pageable pageable) {
         ArrayList<WiseSaying> result = new ArrayList<>();
         for (WiseSaying ws : DB) {
             if (ws.getWritter().contains(keyword)) result.add(ws);
         }
-        return result;
+        return getPagedWiseSayings(result, pageable);
     }
 
     // 명언 파일 작성 양식 매서드
@@ -165,5 +165,13 @@ public class WiseSayingRepository {
         bw.write("{\n\t\"id\": " + wiseSaying.getId() + ",\n" +
                 "\t\"content\": \"" + wiseSaying.getSaying() + "\",\n" +
                 "\t\"author\": \"" + wiseSaying.getWritter() + "\"\n}");
+    }
+
+    private ArrayList<WiseSaying> getPagedWiseSayings(ArrayList<WiseSaying> wiseSayings, Pageable pageable) {
+        int start = pageable.getOffset();   // 페이지 첫번째 명언 index
+        int end = Math.min(start + pageable.getPageSize(), wiseSayings.size()); // 페이지 마지막 명언 index (마지막 페이지일 시 마지막 인덱스까지만)
+        int maxPageNumber = wiseSayings.size() > pageable.getPageSize() ? wiseSayings.size()/ pageable.getPageSize() : 1;   //마지막 페이지 계산
+        pageable.setMaxPageNumber(maxPageNumber);   // 마지막 페이지 설정
+        return  new ArrayList<>(wiseSayings.subList(start, end)); //리스트 잘라서 반환
     }
 }
