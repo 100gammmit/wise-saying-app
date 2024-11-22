@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="772a3880-d98f-42ff-baac-7f393a49a6d3" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Pageable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/IntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/WiseSayingRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/WiseSayingRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

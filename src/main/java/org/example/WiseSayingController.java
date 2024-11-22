@@ -32,13 +32,13 @@ public class WiseSayingController {
         System.out.println(id + "번 명언이 등록되었습니다.");
     }
 
-    public void viewAll(String cmd) {
+    public void viewWiseSayings(String cmd) {
         Map<String, String> param = extractParam(cmd);
         int page = 1;
         if(param.containsKey("page") && param.get("page") != null) page = Integer.parseInt(param.get("page"));
         Pageable pageable = new Pageable(page);
 
-        viewWiseSayingList(wiseSayingService.viewAllWiseSaying(pageable), pageable);
+        viewWiseSayingList(wiseSayingService.viewPagedWiseSayings(pageable), pageable);
     }
 
     public void remove(String cmd) {

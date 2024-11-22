@@ -24,7 +24,7 @@ public class App {
 
                 else if (command.contains("목록")) {
                     if (command.contains("type")) wiseSayingController.searchResult(getParam(command));
-                    else wiseSayingController.viewAll(getParam(command));
+                    else wiseSayingController.viewWiseSayings(getParam(command));
                 }
 
                 // 파라미터로 String에서 int만 추출하며 파싱

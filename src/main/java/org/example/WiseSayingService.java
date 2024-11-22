@@ -32,7 +32,7 @@ public class WiseSayingService {
         return id - 1;
     }
 
-    public ArrayList<WiseSaying> viewAllWiseSaying(Pageable pageable) {
+    public ArrayList<WiseSaying> viewPagedWiseSayings(Pageable pageable) {
         return wiseSayingRepository.findPagedWiseSayings(pageable);
     }
 
