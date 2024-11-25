@@ -40,6 +40,7 @@ public class App {
         } catch (Exception e) {
             System.out.println("오류 발생 : \n" + e);
         }
+
     }
 
     private String getParam(String command) {

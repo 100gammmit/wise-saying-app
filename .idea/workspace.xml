@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="772a3880-d98f-42ff-baac-7f393a49a6d3" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/WiseSayingRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/GitHub/wise-saying-app",
+    "last_opened_file_path": "D:/GitHub/wise_saying_code_review",
     "project.structure.last.edited": "모듈",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -107,7 +107,7 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IntegrationTest">
+  <component name="RunManager" selected="JUnit.WiseSayingRepositoryTest">
     <configuration name="IntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="wise-saying-app.test" />
       <extension name="coverage">
@@ -188,8 +188,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.IntegrationTest" />
         <item itemvalue="JUnit.WiseSayingRepositoryTest" />
+        <item itemvalue="JUnit.IntegrationTest" />
         <item itemvalue="JUnit.WiseSayingRepositoryTest.pageNation" />
         <item itemvalue="JUnit.IntegrationTest.SearchWiseSayingBySaying" />
         <item itemvalue="JUnit.IntegrationTest.ViewAll" />

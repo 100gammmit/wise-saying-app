@@ -2,6 +2,9 @@ package org.example;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
 
 public class WiseSayingRepository {
     ArrayList<WiseSaying> DB = new ArrayList<>();
@@ -81,14 +84,9 @@ public class WiseSayingRepository {
     }
 
     public WiseSaying findById(int id) {
-        WiseSaying result = null;
-        for (WiseSaying ws : DB) {
-            if (ws.getId() == id) {
-                result = ws;
-                break;
-            }
-        }
-        return result;
+        return DB.stream()
+                .filter(e -> e.getId() == id)
+                .findFirst().get();
     }
 
     public void removeById(int id) {
